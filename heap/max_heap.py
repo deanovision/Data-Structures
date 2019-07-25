@@ -3,7 +3,13 @@ class Heap:
         self.storage = []
 
     def insert(self, value):
-        pass
+        if len(self.storage) == 0:
+            self.storage.append(value)
+        else:
+            self.storage.append(value)
+            index = len(self.storage) - 1
+            print(index)
+            self._bubble_up(index)
 
     def delete(self):
         pass
@@ -18,10 +24,16 @@ class Heap:
         # if parent is smaller swap with child
         child_index = index
         parent_index = (child_index - 1) // 2
+        print("parent index", parent_index)
         parent_node = self.storage[parent_index]
         child_node = self.storage[child_index]
         if parent_node < child_node:
-            parent_node, child_node = child_node, parent_node
+            temp = child_node
+            child_node = parent_node
+            parent_node = temp
+
+            # self.storage[parent_index,
+            #              child_index] = self.storage[child_index, parent_index]
 
     def _sift_down(self, index):
         # grabs the indices of this element's children and determines which child has a larger value.
